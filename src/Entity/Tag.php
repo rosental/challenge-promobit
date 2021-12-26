@@ -29,6 +29,11 @@ class Tag
      */
     private $products;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -76,5 +81,22 @@ class Tag
         }
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->name;
     }
 }
