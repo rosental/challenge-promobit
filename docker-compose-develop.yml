@@ -3,7 +3,7 @@ services:
 
     webserver:
         image: nginx:alpine
-        container_name: bprv-p4-webserver
+        container_name: challenge-promobit-webserver
         working_dir: /application
         volumes:
             - .:/application
@@ -13,7 +13,7 @@ services:
 
     php-fpm:
         build: docker/php-fpm
-        container_name: bprv-p4-php-fpm
+        container_name: challenge-promobit-php-fpm
         working_dir: /application
         volumes:
             - .:/application
@@ -23,15 +23,15 @@ services:
 
     #memcached:
     #    image: memcached:alpine
-    #    container_name: bprv-p4-memcached
+    #    container_name: challenge-promobit-memcached
     #
     #redis:
     #    image: redis:alpine
-    #    container_name: bprv-p4-redis
+    #    container_name: challenge-promobit-redis
     #
     #postgres:
     #    image: postgres:11.1-alpine
-    #    container_name: bprv-p4-postgres
+    #    container_name: bchallenge-promobit-postgres
     #    working_dir: /application
     #    volumes:
     #        - .:/application
@@ -47,7 +47,7 @@ services:
 #services:
 #    app:
 #        image: markteam/docker-php:7.3
-#        container_name: bprv-p4
+#        container_name: challenge-promobit
 #        working_dir: /var/www/app
 #        restart: always
 #        volumes:
