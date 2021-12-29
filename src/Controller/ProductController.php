@@ -74,7 +74,7 @@ class ProductController extends AbstractController
 
             $this->addFlash('success', 'Produto atualizado com sucesso!');
 
-            return $this->redirectToRoute('admin_products_edit', ['product' => $product->getId()]);
+            return $this->redirectToRoute('admin_products_index');
         }
 
         return $this->render('product/edit.html.twig', [
