@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
+use function Symfony\Component\String\u;
 
 /**
  * @method Tag|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +49,15 @@ class TagRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function RelevanceReport()
+    {
+        return $this->createQueryBuilder('c')
+//            ->select('c')
+            ->innerJoin('c.products','a', Join::WITH)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 }

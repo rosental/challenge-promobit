@@ -25,20 +25,21 @@ class Product
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="products")
-     */
-    private $tags;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $CreatedAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="products")
+     */
+    private $tags;
 
     public function __construct()
     {
         $this->tags = new ArrayCollection();
     }
 
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -54,6 +55,24 @@ class Product
         $this->name = $name;
 
         return $this;
+    }
+
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->CreatedAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $CreatedAt): self
+    {
+        $this->CreatedAt = $CreatedAt;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->name;
     }
 
     /**
@@ -76,18 +95,6 @@ class Product
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->CreatedAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $CreatedAt): self
-    {
-        $this->CreatedAt = $CreatedAt;
 
         return $this;
     }
