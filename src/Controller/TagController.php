@@ -25,6 +25,27 @@ class TagController extends AbstractController
         //$this->denyAccessUnlessGranted('ROLE_USER');
 
         $tags = $tagRepository->findAll();
+//        dump($tags);die;
+
+        return $this->render('tag/index.html.twig', compact('tags'));
+    }
+
+    /**
+     * @Route("/rrp", name="rrp")
+     * Security("is_granted('ROLE_ADMIN')")
+     * IsGranted("ROLE_USER")
+     */
+    public function relatorio(TagRepository $tagRepository)
+    {
+        //$this->denyAccessUnlessGranted('ROLE_USER');
+
+        $sql = $this->createQueryBuilder('s')
+            ->select('SUM(s.expenses) AS total')
+            ->groupBy('s.keyval')
+        ;
+
+//        return $sql->getQuery()->**getSingleScalarResult**();
+
 
         return $this->render('tag/index.html.twig', compact('tags'));
     }
