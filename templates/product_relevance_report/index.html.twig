@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tags{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>Tags</h1>
+                <a href="{{ path('admin_tags_create') }}" class="btn btn-success">Criar Tag</a>
+            </div>
+            <hr>
+        </div>
+
+        <div class="col-12">
+            <table class="table">
+                <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Criado Em</th>
+                    <th>Ações</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                {% for tag in tags  %}
+                    <tr>
+                        <td>{{ tag.id }}</td>
+                        <td>{{ tag.name }}</td>
+                        <td>{{ tag.createdAt|date("d/m/Y H:i:s") }}</td>
+                        <td>
+                            <a href="{{ path('admin_tags_edit', {tag: tag.id}) }}" class="btn btn-sm btn-primary">Editar</a>
+                            <a href="{{ path('admin_tags_remove', {tag: tag.id}) }}" class="btn btn-sm btn-danger">Remover</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

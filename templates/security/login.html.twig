@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block stylesheets %}
+    <!-- Font Awesome -->
+{#    <link rel="stylesheet" href="/admin/build/scss/pages/_login_and_register.scss">#}
+    <link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
+
+
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    {% endblock %}
+</head>
+<!-- Google Font -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class=" login-page" style="background-color:#e5ecef ">
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="/admin/dist/img/PMMAPNG.png" width="120" height="130" alt="AdminLTE Logo" >
+        </div>
+        <br>
+        <h5 class="text-center text-gray-dark text-bold">SICOM</h5>
+        <h6 class="text-center text-black-50 text-bold">Sistema Informatizado de Controle de Materiais</h6>
+
+        <!-- /.login-logo -->
+        <div class="login-box-body" >
+            {% if error %}
+                <div class="alert alert-warning">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <form action="{{ path('login') }}" method="post">
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="CPF" name="_username" value="{{ last_username }}" >
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" placeholder="Senha" name="_password">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                            <label class="text text-center">
+                                <input class="text text-black-50 text-center" type="checkbox"> Lembrar senha
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                                    <!-- /.col -->
+                </div>
+                <div class="col-xs-4">
+                    <button type="submit" class="btn-dark btn-block btn-flat" >Sign In</button>
+                </div>
+
+            </form>
+
+            <a href="#" class="text text-black-50 text-center">Esqueci minha senha</a><br>
+            <a href="#" class="text text-black-50 text-center">Registrar</a>
+
+        </div>
+
+
+<!-- /.login-box -->{% block javascripts %}
+<!-- jQuery -->
+<script src="/admin/plugins/jquery/jquery.min.js"></script>
+        <script>
+            $('._username').mask('000.000.000-00', {reverse: true});
+
+        </script>
+{% endblock %}
+</body>
+
+</html>
+
+
